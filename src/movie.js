@@ -2,6 +2,8 @@
 export const generateMovieCards = async () => {
   const movies = await fetchMovieData();
 
+  movies.sort((a, b) => b.popularity - a.popularity); // popularity에 따라 정렬;
+
   const cardList = document.querySelector("#card-list");
   cardList.innerHTML = movies
     .map(
