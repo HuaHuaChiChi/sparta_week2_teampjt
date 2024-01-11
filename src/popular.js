@@ -1,4 +1,4 @@
-// Popular API 를  TMDB 에서 가져오는 스크립트
+// 1. Popular API 를  TMDB 에서 가져오는 스크립트
 const generateMovieCards = async () => {
   const movies = await fetchMovieData();
 
@@ -47,3 +47,30 @@ async function fetchMovieData() {
 
 // 가져온 Popular API를 실행
 generateMovieCards();
+
+// 2. 영화 검색 스크립트
+const handleSearch = searchKeyword => {
+  const movieCards = document.querySelectorAll(".movie-card");
+
+  movieCards.forEach(card => {
+    const title = card.querySelector(".movie-title").textContent.toLowerCase();
+    const searchedValue = searchKeyword.replace(/\s/g, "").toLowerCase();
+    const titleWithoutSpaces = title.replace(/\s/g, "");
+
+    if (titleWithoutSpaces.includes(searchedValue)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+};
+
+// 2-1. 검색 기능 관련 스크립트
+const searchInput = document.querySelector("#search-input");
+searchInput.focus();
+
+const form = document.querySelector("#search-form");
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  handleSearch(searchInput.value);
+});
