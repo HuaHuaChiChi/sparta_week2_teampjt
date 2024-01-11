@@ -35,7 +35,7 @@ function renderMovieCards(container, movies) {
 
   const overview = container.querySelectorAll('.overview');
   overview.forEach(function (el) {
-    if (el.textContent.length > 290) {
+    if (el.textContent.length > 285) {
       el.style.fontSize = '14px';
     }
   });
