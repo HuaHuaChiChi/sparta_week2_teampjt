@@ -20,17 +20,6 @@ function submitReview() {
     }
 }
 
-function saveReview(reviewData) {
-    // 로컬 스토리지에서 기존 리뷰를 가져옵니다.
-    const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-
-    // 새 리뷰를 배열에 추가합니다.
-    existingReviews.push(reviewData);
-
-    // 업데이트된 배열을 다시 로컬 스토리지에 저장합니다.
-    localStorage.setItem('reviews', JSON.stringify(existingReviews));
-}
-
 function loadReviews() {
     commentList.innerHTML = ''; // 기존 댓글 목록 비우기
 
@@ -46,7 +35,8 @@ function loadReviews() {
             <button class = "reviewUpdate">수정 </button>`;
             commentList.appendChild(reviewItem);
         });
-        //추가 
+        //삭제버튼 이벤트 리스너 추가 삭제버튼에 data- 값을 주고 this.dataset.reviewid 삭제버튼을 누르면
+        //삭제버튼의 데이터 값 ${review.id}를 가져옴 
         const deleteButtons = document.querySelectorAll('.deleteButton');
         deleteButtons.forEach(button => {
             button.addEventListener('click', function () {
@@ -55,21 +45,24 @@ function loadReviews() {
                 loadReviews(); // 리뷰 목록 갱신
             });
         });
-        //추가
     } else {
         commentList.innerHTML = '<p>아직 리뷰가 없습니다.</p>';
     }
 };
 
-//추가
+
 function deleteReview(reviewId) {
     const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
     const updatedReviews = existingReviews.filter(review => review.id !== reviewId);
     localStorage.setItem('reviews', JSON.stringify(updatedReviews));
 };
-//추가
+//filter를 통해 reviewid와 다른 값만 남기고 저장
 
-
+function saveReview(reviewData) {
+    const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    existingReviews.push(reviewData);
+    localStorage.setItem('reviews', JSON.stringify(existingReviews));
+}
 
 const form = document.querySelector('form');
 form.addEventListener('submit', function(event) {
