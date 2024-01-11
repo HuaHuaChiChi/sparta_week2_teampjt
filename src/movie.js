@@ -33,12 +33,12 @@ function renderMovieCards(container, movies) {
     )
     .join("");
 
-  const overview = container.querySelectorAll('.overview');
-  overview.forEach(function (el) {
-    if (el.textContent.length > 285) {
-      el.style.fontSize = '14px';
-    }
-  });
+  // const overview = container.querySelectorAll('.overview');
+  // overview.forEach(function (el) {
+  //   if (el.textContent.length > 285) {
+  //     el.style.fontSize = '14px';
+  //   }
+  // });
 }
 
 

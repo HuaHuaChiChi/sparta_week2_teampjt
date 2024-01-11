@@ -98,7 +98,10 @@ footer {
   cursor: pointer;
   user-select: none;
   transition: transform 100ms ease-in;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .movie-card:hover {
@@ -131,11 +134,5 @@ footer {
 .movie-card p+p+p {
   font-weight: 600;
   text-align: left;
-  position: absolute;
-  bottom: 35px;
   height: 20px;
-}
-
-.movie-card p+p+p {
-  bottom: 15px;
 }
