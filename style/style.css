@@ -122,10 +122,15 @@ footer {
   margin-top: 5px;
 }
 
-.movie-card p:last-child {
+.overview {
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.movie-card p+p {
   font-weight: 600;
-  text-align: center;
+  text-align: left;
   position: absolute;
-  bottom: 0;
-  margin-bottom: 10px;
+  bottom: 15px;
+
 }

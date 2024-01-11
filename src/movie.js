@@ -11,11 +11,20 @@ export const generateMovieCards = async () => {
             <li class="movie-card" id=${movie.id}>
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                 <h3 class="movie-title">${movie.title}</h3>
-                <p>${movie.overview}</p>
-                <p>Rating: ${movie.vote_average}</p>
+                <p class="overview">${movie.overview}</p>
+                <p>Rating: ${movie.vote_average}<br>popularity :${movie.popularity}</p>
+                <p> </p>
             </li>`
     )
     .join("");
+
+  const overview = document.querySelectorAll('.overview');
+  overview.forEach(function (el) {
+    if (el.textContent.length > 300) {
+      el.style.fontSize = '14px';
+      el.style.lineHight = '1.5';
+    }
+  })
 
   cardList.addEventListener("click", handleClickCard);
 
