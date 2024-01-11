@@ -17,15 +17,17 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  align-items: center;
 }
 
 header {
   position: fixed;
+  top: 0;
   background-color: var(--bg-header-color);
-  height: 120px;
+  height: 90px;
   display: flex;
-  align-items: center;
-  margin-bottom: 100px;
+  flex-direction: row;
   width: 100%;
   z-index: 1000;
 }
@@ -47,19 +49,16 @@ footer {
 }
 
 #search-form {
-  text-align: center;
-  padding: 20px 0;
-  margin-left: 20px;
-}
-
-#search-form label {
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: center;
 }
 
 #search-form input {
-  width: 1000px;
+  align-items: center;
+  width: 70%;
   height: 40px;
-  padding: 0px 50px;
   border-radius: 10px;
   border: 1px solid green;
 }
@@ -70,6 +69,31 @@ footer {
   border-radius: 10px;
   transform: translateX(-60px);
   border: 1px solid gray;
+}
+#menu-button {
+  color: green;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: center;
+}
+#toprate {
+  justify-content: flex-end;
+  color: green;
+  margin-right: 30px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  background-color: var(--bg-header-color);
+}
+#popular {
+  margin-left: 30px;
+  justify-content: flex-end;
+  color: green;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  background-color: var(--bg-header-color);
 }
 
 #search-input::placeholder {
@@ -128,4 +152,43 @@ footer {
   position: absolute;
   bottom: 0;
   margin-bottom: 10px;
+}
+
+/* detail page design */
+#details-container {
+  padding-top: 130px;
+}
+.movie-detail-container {
+  width: 65%;
+  height: 30%;
+  margin: 20px auto 20px auto;
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0.2, 0.2, 0.2);
+}
+.movie-img {
+  border-radius: 8px;
+  margin-right: 20px;
+}
+.movie-title {
+  font-size: 24px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.movie-ratings {
+  display: flex;
+  flex-direction: row;
+}
+.movie-rate {
+  margin-right: 10px;
+}
+.movie-detail {
+  margin-top: 10px;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
