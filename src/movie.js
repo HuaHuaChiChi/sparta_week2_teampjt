@@ -5,9 +5,6 @@ export const generateMovieCards = async () => {
   const cardList = document.querySelector("#card-list");
   renderMovieCards(cardList, movies);
 
-  const ratingButton = document.querySelector('.rating');
-  const popularityButton = document.querySelector('.popularity');
-
   cardList.addEventListener("click", function (event) {
     const target = event.target;
 
