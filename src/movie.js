@@ -9,10 +9,10 @@ export const generateMovieCards = async () => {
     const target = event.target;
 
     // 클릭된 요소가 rating 또는 popularity 클래스를 가지고 있는지 확인
-    if (target.classList.contains("rating")) {
+    if (target.classList.value.includes("rating")) {
       movies.sort((a, b) => b.vote_average - a.vote_average);
       renderMovieCards(cardList, movies);
-    } else if (target.classList.contains("popularity")) {
+    } else if (target.classList.value.includes("popularity")) {
       movies.sort((a, b) => b.popularity - a.popularity);
       renderMovieCards(cardList, movies);
     }
@@ -33,12 +33,12 @@ function renderMovieCards(container, movies) {
     )
     .join("");
 
-  // const overview = container.querySelectorAll('.overview');
-  // overview.forEach(function (el) {
-  //   if (el.textContent.length > 285) {
-  //     el.style.fontSize = '14px';
-  //   }
-  // });
+  const overview = container.querySelectorAll('.overview');
+  overview.forEach(function (el) {
+    if (el.textContent.length > 285) {
+      el.style.fontSize = '15px';
+    }
+  });
 }
 
 
