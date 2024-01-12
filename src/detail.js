@@ -35,22 +35,6 @@ async function fetchMovieCredits(movieId) {
   return data;
 }
 
-async function fetchMovieTrailer(movieId) {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
-    }
-  };
-
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options);
-  const data = await response.json();
-  console.log("Fetched movie videos:", data);
-  return data;
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
   // URL에서 'id'라는 query parameter의 값을 가져옵니다.
   const urlParams = new URLSearchParams(window.location.search);
@@ -101,3 +85,7 @@ const createMovieDetail = (detail, credits) => {
   </div>`;
   return detail_html;
 };
+
+
+
+

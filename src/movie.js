@@ -16,6 +16,12 @@ export const generateMovieCards = async () => {
       movies.sort((a, b) => b.popularity - a.popularity);
       renderMovieCards(cardList, movies);
     }
+    const target2 = event.target.closest(".movie-card");
+
+    if (target2) {
+      const movieId = target2.id;
+      window.location.href = `detail.html?id=${movieId}`;
+    }
   });
 };
 

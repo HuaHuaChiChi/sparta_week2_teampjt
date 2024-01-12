@@ -48,12 +48,10 @@ header span {
   font-weight: 600;
 }
 
-/* .header-box {
-  background-color: green;
+#toprate a {
   width: 100%;
-  height: 600px;
-  overflow: hidden;
-} */
+  height: 100%;
+}
 
 .header-box img {
   width: 100%;
