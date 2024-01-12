@@ -59,7 +59,6 @@ export const generateMovieCards = async () => {
     // 초기 렌더링
     renderMovieCards();
   }
-  scrollPosition();
 };
 
 async function fetchMovieData() {
