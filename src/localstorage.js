@@ -1,19 +1,28 @@
-
+// import {generateMovieCards} from"./popular";
+// generateMovieCards()
 const commentForm = document.getElementById('reviewInput');
 const usernameElement = document.getElementById('username');
 const commentList = document.getElementById('commentList');
 const userPassword = document.getElementById('password');
 
+const urlParams = new URLSearchParams(window.location.search);
+const movieId = urlParams.get("id");
+console.log(movieId);
+
 function submitReview() {
+    console.log('hi');
     const reviewContent = commentForm.value.trim();
     const username = usernameElement.value.trim();
 
     if (reviewContent !== "" && username !== "") {
+        
         const reviewData = {
             id : new Date().getTime(),
             name: username,
             content: reviewContent,
+            movieId: movieId
         };
+        console.log(reviewData);
 
         saveReview(reviewData);
         loadReviews(); // 리뷰 목록 갱신
@@ -64,7 +73,8 @@ function saveReview(reviewData) {
     localStorage.setItem('reviews', JSON.stringify(existingReviews));
 }
 
-const form = document.querySelector('form');
+const form = document.querySelector('#inputForm');
+console.log(form);
 form.addEventListener('submit', function(event) {
     event.preventDefault();
     submitReview();

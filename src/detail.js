@@ -51,6 +51,7 @@ async function fetchMovieTrailer(movieId) {
   return data;
 }
 */
+
 document.addEventListener("DOMContentLoaded", async () => {
   // URL에서 'id'라는 query parameter의 값을 가져옵니다.
   const urlParams = new URLSearchParams(window.location.search);

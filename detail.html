@@ -6,9 +6,11 @@
     <title>FlickFinder - Movie Search web - detail page</title>
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
+    <script type="module" src="./src/detail.js"></script>
     <script type="module" src="./src/main.js"></script>
-    <script src="./src/detail.js" type="module"></script>
-    <script type="module" src="/src/localstorage.js"></script>
+    <script type="module" src="./src/localstorage.js"></script>
+    
+
   </head>
   <body>
     <header>
@@ -42,7 +44,7 @@
         <button onClick="location.href='./popular.html'" id="popular">POPULAR</button>
       </div>
     </header>
-    <form>
+    <form id="inputForm">
         <input type="text" id="username" placeholder="닉네임을 작성하세요">
         <input type="password" id="password" placeholder="비밀번호">
         <textarea id="reviewInput" placeholder="리뷰를 작성하세요"></textarea>
