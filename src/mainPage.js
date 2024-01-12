@@ -1,4 +1,3 @@
-// 1. 영화 데이터를 가져와서 화면에 나타내기
 const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
@@ -13,7 +12,7 @@ export const generateMovieCards = async () => {
             <li class="movie-card" id=${movie.id}>
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                 <h3 class="movie-title">${movie.title}</h3>
-                <p>${movie.overview}</p>
+                
                 <p>평점: ${movie.vote_average}</p>
                 <p>인기도: ${movie.popularity}</p>
             </li>`
@@ -63,16 +62,45 @@ export const generateMovieCards = async () => {
   }
 };
 
-export async function fetchMovieData() {
+async function fetchMovieData() {
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmM2ZTFkNjQzMTNkMDY1ZjczYjkyYjliNTM4YmJjNSIsInN1YiI6IjY1OTNkMDkyZmMzMWQzNzI4NTQ2YjQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CkZC7SdOdnrzr2YHFLyd94sIAFIYTAK2sOqJHujnVCY"
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
     }
   };
-  const response = await fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1&include_adult=false", options);
+  const response = await fetch("https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1", options);
   const data = await response.json();
   return data.results;
 }
+// 가져온 Popular API를 실행
+generateMovieCards();
+
+// 2. 영화 검색 스크립트
+const handleSearch = searchKeyword => {
+  const movieCards = document.querySelectorAll(".movie-card");
+
+  movieCards.forEach(card => {
+    const title = card.querySelector(".movie-title").textContent.toLowerCase();
+    const searchedValue = searchKeyword.replace(/\s/g, "").toLowerCase();
+    const titleWithoutSpaces = title.replace(/\s/g, "");
+
+    if (titleWithoutSpaces.includes(searchedValue)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+};
+
+// 2-1. 검색 기능 관련 스크립트
+const searchInput = document.querySelector("#search-input");
+searchInput.focus();
+
+const form = document.querySelector("#search-form");
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  handleSearch(searchInput.value);
+});
