@@ -6,7 +6,8 @@
     <title>FlickFinder - Movie Search web</title>
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
-    <script type="module" src="./src/main.js"></script>
+
+    <script src="./src/mainPage.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -36,13 +37,19 @@
         <button id="search-btn">검색</button>
       </form>
       <div class="header-menu">
-        <button id="toprate">TOP RATED</button>
+        <button onClick="location.href='./toprate.html'" id="toprate">TOP RATED</button>
         <button onClick="location.href='./popular.html'" id="popular">POPULAR</button>
       </div>
     </header>
+    <div class="header-box">
+      <img src="/img/movie-theater.jpg" />
+      <div class="header-box_title">
+        <h1>search the list of top rated & popular movies!</h1>
+      </div>
+    </div>
     <div class="header-sort">
-      <button id="sorttoprate">TOP RATED정렬</button>
-      <button id="sortpopular">popular정렬</button>
+      <button id="sorttoprate">평점 순</button>
+      <button id="sortpopular">인기도 순</button>
     </div>
     <ul id="card-list"></ul>
   </body>

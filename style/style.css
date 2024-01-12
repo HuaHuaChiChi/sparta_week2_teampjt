@@ -12,7 +12,7 @@
 body {
   background: url("../assets/bg.png") center/cover no-repeat;
   min-height: 100vh;
-  margin-top: 75px;
+  margin-top: 85px;
 }
 
 a {
@@ -49,23 +49,23 @@ header span {
 
 .header-box img {
   width: 100%;
-  height: auto;
+  height: 400px;
   display: block;
 }
 
 .header-box_title {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 62%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: left;
   width: 100%;
 }
 
 .header-box_title h1 {
   color: white;
   font-size: 50px;
-  font-weight: bold;
+
   margin: -250px 0 0;
 }
 
@@ -117,9 +117,23 @@ footer {
   cursor: pointer;
   background-color: var(--bg-header-color);
 }
+.header-sort {
+  display: flex;
+  justify-content: center;
+}
 .header-sort > button {
   margin-top: 15px;
+  border-radius: 5px;
+  padding: 5px 5px;
 }
+.header-sort > button:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+.header-sort > button:nth-child(1) {
+  /* 첫 번째 버튼에 적용할 스타일 */
+  margin-right: 15px;
+}
+
 #search-input::placeholder {
   text-align: center;
 }
@@ -134,7 +148,7 @@ footer {
   justify-content: center;
   gap: 16px;
   list-style: none;
-  padding-top: 40px;
+  padding-top: 25px;
 }
 /*카드하나*/
 .movie-card {
