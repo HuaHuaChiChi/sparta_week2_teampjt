@@ -3,43 +3,38 @@ const generateMovieCards = async () => {
   const movies = await fetchMovieData();
 
   const cardList = document.querySelector("#card-list");
-
-  renderMovieCards(cardList, movies);
-
-  cardList.addEventListener("click", function (event) {
-    const target = event.target;
-
-    // 클릭된 요소가 rating 또는 popularity 클래스를 가지고 있는지 확인
-    if (target.classList.value.includes("rating")) {
-      movies.sort((a, b) => b.vote_average - a.vote_average);
-      renderMovieCards(cardList, movies);
-    } else if (target.classList.value.includes("popularity")) {
-      movies.sort((a, b) => b.popularity - a.popularity);
-      renderMovieCards(cardList, movies);
-    }
-    const target2 = event.target.closest(".movie-card");
-
-    if (target2) {
-      const movieId = target2.id;
-      window.location.href = `detail.html?id=${movieId}`;
-    }
-  });
-};
-
-function renderMovieCards(container, movies) {
-  container.innerHTML = movies
+  cardList.innerHTML = movies
     .map(
       movie => `
-            <li class="movie-card" id=${movie.id}>
-                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-                <h3 class="movie-title">${movie.title}</h3>
-                <p>${movie.overview}</p>
-                <p class="rating">Rating: ${movie.vote_average}</p>
-                <p class="popularity">popularity: ${movie.popularity}</p>
-            </li>`
+              <li class="movie-card" id=${movie.id}>
+                  <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                  <h3 class="movie-title">${movie.title}</h3>
+                  <p>${movie.overview}</p>
+                  <p>Rating: ${movie.vote_average}</p>
+              </li>`
     )
     .join("");
-}
+
+  cardList.addEventListener("click", handleClickCard);
+
+  // 이벤트 위임: 하위요소에서 발생한 이벤트를 상위요소에서 처리
+  function handleClickCard({ target }) {
+    // 카드 외 영역 클릭 시 무시
+    if (target === cardList) return;
+    let movieId;
+    if (target.matches(".movie-card")) {
+      movieId = target.id;
+      alert(`영화 id: ${movieId}`);
+    } else {
+      movieId = target.parentNode.id;
+      // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
+      alert(`영화 id: ${movieId}`);
+    }
+    if (movieId) {
+      window.location.href = `detail.html?id=${movieId}`;
+    }
+  }
+};
 
 async function fetchMovieData() {
   const options = {
