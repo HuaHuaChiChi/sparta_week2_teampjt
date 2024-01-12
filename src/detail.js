@@ -34,23 +34,7 @@ async function fetchMovieCredits(movieId) {
   console.log("Fetched movie Cast:", data);
   return data;
 }
-/* 비디오 가져오기
-async function fetchMovieTrailer(movieId) {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
-    }
-  };
 
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options);
-  const data = await response.json();
-  console.log("Fetched movie videos:", data);
-  return data;
-}
-*/
 document.addEventListener("DOMContentLoaded", async () => {
   // URL에서 'id'라는 query parameter의 값을 가져옵니다.
   const urlParams = new URLSearchParams(window.location.search);
@@ -62,6 +46,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       const [movieDetails, movieCredits] = await Promise.all([fetchMovieDetails(movieId), fetchMovieCredits(movieId)]);
       // 가져온 상세 정보를 표시합니다.
       displayDetail(movieDetails, movieCredits);
+
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitReview(movieId);
+      });
+
+      // 페이지 로드 시 리뷰 목록 불러오기
+      loadReviews(movieId);
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
@@ -73,16 +66,7 @@ const displayDetail = async (movieDetails, movieCredits) => {
   let movieDetail = await createMovieDetail(movieDetails, movieCredits);
   containerDetail.innerHTML = movieDetail;
 };
-/* 비디오..
-const showMoVieTrailder = async () => {
-  const videos = await fetchMovieTrailer(movieId);
-  const movieVideo = videos.results.find(video => video.type === "Trailer");
-  console.log(movieVideo);
-  const youtube = movieVideo.key;
-  const videoContainer = document.getElementById("video-container");
-  videoContainer.innerHTML = `<iframe width="800" height="450" src="https://www.youtube.com/embed/${youtube}" frameborder="0" allowfullscreen></iframe>`;
-};
-*/
+
 const createMovieDetail = (detail, credits) => {
   const genres = detail.genres.map(genres => genres.name).join(",");
   const director = credits.crew.find(person => person.job === "Director").name;
