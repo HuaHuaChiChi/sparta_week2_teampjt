@@ -94,6 +94,7 @@ footer {
   height: 40px;
   border-radius: 10px;
   border: 1px solid green;
+  text-indent: 50px;
 }
 
 #search-form button {
