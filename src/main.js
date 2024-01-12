@@ -12,3 +12,6 @@ form.addEventListener("submit", event => {
 if (document.querySelector("#card-list")) {
   generateMovieCards();
 }
+
+
+
