@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       // 영화 상세 정보를 가져옵니다. detail과 credit정보를 한번에 함께 가져오려고 promise.all썻다.. 뭐라는지모르겟다..
       const [movieDetails, movieCredits] = await Promise.all([fetchMovieDetails(movieId), fetchMovieCredits(movieId)]);
+      // const [movieDetails, movieCredits, movieTrailer] = await Promise.all([fetchMovieDetails(movieId), fetchMovieCredits(movieId), fetchMovieTrailer(movieId)]);
       // 가져온 상세 정보를 표시합니다.
       displayDetail(movieDetails, movieCredits);
 
@@ -56,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // 페이지 로드 시 리뷰 목록 불러오기
       loadReviews(movieId);
     } catch (error) {
-      console.error("Error fetching movie details:", error);
+      console.error("Error fetching movie details, credits, or trailer:", error);
     }
   }
 });
