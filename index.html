@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
     <script type="module" src="./src/main.js"></script>
-    
   </head>
   <body>
     <header>
@@ -58,12 +57,18 @@
       </form>
       <div class="header-menu">
         <button id="toprate">TOP RATED</button>
-        <button onClick="location.href='./popular.html'" id="popular">POPULAR</button>
+        <button id="popular"><a href="./popular.html">POPULAR</a></button>
       </div>
     </header>
+    <div class="header-box">
+      <img src="/img/movie-theater.jpg" />
+      <div class="header-box_title">
+        <h1>search the list of top rated & popular movies!</h1>
+      </div>
+    </div>
     <div class="header-sort">
-      <button id="sorttoprate" class="btn-hover color-5">TOP RATED정렬</button>
-      <button id="sortpopular" class="btn-hover color-6">popular정렬</button>
+      <button id="sorttoprate" class="btn-hover color-5">평점 순</button>
+      <button id="sortpopular" class="btn-hover color-6">인기도 순</button>
     </div>
     <ul id="card-list"></ul>
   </body>

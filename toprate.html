@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FlickFinder - Movie Search web - detail page</title>
+    <title>FlickFinder - Movie Search web</title>
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
-    <script src="./src/detail.js" type="module"></script>
-    <script type="module" src="/src/localstorage.js"></script>
+    <script type="module" src="./src/main.js"></script>
   </head>
   <body>
     <header>
       <a href="index.html">
-        <h1 class="apptitle">
+        <h1>
           Flick<span>Finder</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,21 +36,21 @@
         <button id="search-btn">검색</button>
       </form>
       <div class="header-menu">
-        <button id="toprate"><a href="./index.html">TOP RATED</a></button>
-        <button id="popular"><a href="./popular.html">POPULAR</a></button>
+        <button onClick="location.href='./toprate.html'" id="toprate">TOP RATED</button>
+        <button onClick="location.href='./popular.html'" id="popular">POPULAR</button>
       </div>
     </header>
-    <form>
-        <input type="text" id="username" placeholder="닉네임을 작성하세요">
-        <input type="password" id="password" placeholder="비밀번호">
-        <textarea id="reviewInput" placeholder="리뷰를 작성하세요"></textarea>
-        <button>저장</button>
-    </form>
-
-
-    <div id="commentList"></div>
-
-    <div id="details-container"></div>
+    <div class="header-box">
+      <img src="/img/movie-theater.jpg" />
+      <div class="header-box_title">
+        <h1>Top Rated Movies.</h1>
+      </div>
+    </div>
+    <div class="header-sort">
+      <button id="sorttoprate" class="btn-hover color-5">평점 순</button>
+      <button id="sortpopular" class="btn-hover color-6">인기도 순</button>
+    </div>
+    <ul id="card-list"></ul>
   </body>
   <footer>FlickFinder - Movie Search WEB</footer>
 </html>

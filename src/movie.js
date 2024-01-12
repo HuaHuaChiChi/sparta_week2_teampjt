@@ -3,7 +3,7 @@ const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
 export const generateMovieCards = async () => {
-  let movies = await fetchMovieData();
+  let movies = await fetchMovieData(); //영화데이터 받아몸
 
   if (cardList) {
     function renderMovieCards() {
@@ -14,8 +14,8 @@ export const generateMovieCards = async () => {
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                 <h3 class="movie-title">${movie.title}</h3>
                 <p>${movie.overview}</p>
-                <p>Rating: ${movie.vote_average}</p>
-                <p>popular: ${movie.popularity}</p>
+                <p>평점: ${movie.vote_average}</p>
+                <p>인기도: ${movie.popularity}</p>
             </li>`
         )
         .join("");
@@ -47,7 +47,7 @@ export const generateMovieCards = async () => {
       } else if (sortBy === "sortpopular") {
         movies.sort((a, b) => b.popularity - a.popularity);
       }
-      renderMovieCards();
+      renderMovieCards(); //정렬버튼 클릭하고 정렬한 뒤 카드 다시 렌더링
     }
     //카드에 클릭이벤트 넣기
     cardList.addEventListener("click", handleClickCard);
@@ -56,12 +56,12 @@ export const generateMovieCards = async () => {
     if (sortButtons) {
       sortButtons.addEventListener("click", handleSortButtonClick);
     }
-    // 초기 렌더링
+    // 초기 함수카드 렌더링
     renderMovieCards();
   }
 };
 
-async function fetchMovieData() {
+export async function fetchMovieData() {
   const options = {
     method: "GET",
     headers: {
