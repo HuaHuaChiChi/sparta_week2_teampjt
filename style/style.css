@@ -117,7 +117,7 @@ footer {
   flex-direction: row;
 }
 
-.header-menu>button {
+.header-menu > button {
   justify-content: flex-end;
   color: green;
   margin-right: 30px;
@@ -126,7 +126,9 @@ footer {
   cursor: pointer;
   background-color: var(--bg-header-color);
 }
-
+.header-sort > button {
+  margin-top: 15px;
+}
 #search-input::placeholder {
   text-align: center;
 }
@@ -185,13 +187,6 @@ footer {
   line-height: 1.1;
 }
 
-.movie-card p+p,
-.movie-card p+p+p {
-  font-weight: 600;
-  text-align: left;
-  height: 20px;
-}
-
 /* detail page design */
 #details-container {
   padding-top: 75px;
@@ -235,4 +230,10 @@ footer {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+}
+.movie-card p + p,
+.movie-card p + p + p {
+  font-weight: 600;
+  text-align: left;
+  height: 20px;
 }
