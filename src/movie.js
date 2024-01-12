@@ -3,7 +3,7 @@ const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
 export const generateMovieCards = async () => {
-  let movies = await fetchMovieData(); //영화데이터 받아몸
+  let movies = await fetchMovieData();
 
   if (cardList) {
     function renderMovieCards() {
@@ -21,6 +21,8 @@ export const generateMovieCards = async () => {
         .join("");
     }
 
+    // 이벤트 위임: 하위요소에서 발생한 이벤트를 상위요소에서 처리
+    // 카드클릭시 상세페이지
     function handleClickCard({ target }) {
       // 카드 외 영역 클릭 시 무시
       if (target === cardList) return;
@@ -61,7 +63,7 @@ export const generateMovieCards = async () => {
   }
 };
 
-export async function fetchMovieData() {
+async function fetchMovieData() {
   const options = {
     method: "GET",
     headers: {
