@@ -18,7 +18,6 @@ const generateMovieCards = async () => {
       renderMovieCards(cardList, movies);
     }
   });
-
 };
 
 function renderMovieCards(container, movies) {
