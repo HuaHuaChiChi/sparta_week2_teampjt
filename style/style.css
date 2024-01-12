@@ -47,13 +47,6 @@ header span {
   font-weight: 600;
 }
 
-/* .header-box {
-  background-color: green;
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-} */
-
 .header-box img {
   width: 100%;
   height: auto;
@@ -134,14 +127,16 @@ footer {
 #search-btn:hover {
   background-color: rgb(30, 158, 30);
 }
-
+/*flex-wrap설정해서 창 줄어들면 아래로 내려가게*/
 #card-list {
-  display: grid;
-  grid-template-columns: repeat(5, 0.5fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
   list-style: none;
   padding-top: 40px;
 }
-
+/*카드하나*/
 .movie-card {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
   margin: 10px;
