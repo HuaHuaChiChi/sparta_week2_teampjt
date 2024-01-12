@@ -12,7 +12,22 @@ form.addEventListener("submit", event => {
 if (document.querySelector("#card-list")) {
   generateMovieCards();
 }
+// ('header')
+document.addEventListener('DOMContentLoaded', () => {
+  const test = document.querySelector('#test');
 
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY || window.pageYOffset; // Handle cross-browser compatibility
 
+    console.log(scrollY);
+
+    // Adjust the scroll condition as needed
+    if (scrollY >= 418) {
+      test.classList.add('fixed');
+    } else {
+      test.classList.remove('fixed');
+    }
+  });
+});
 
 
