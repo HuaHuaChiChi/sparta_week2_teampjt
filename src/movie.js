@@ -76,15 +76,3 @@ async function fetchMovieData() {
   return data.results;
 }
 
-// const header = document.querySelector('header');
-// function scrollPosition() {
-//   let headerScroll = header.scrollTop;
-//   let sortScroll = sortButtons.scrollTop;
-//   if (headerScroll === sortScroll) {
-//     sortButtons.classList.add('fixed');
-//   } else {
-//     sortButtons.classList.remove('fixed');
-//   }
-// }
-// window.addEventListener('scroll', scrollPosition);
-// sortButtons

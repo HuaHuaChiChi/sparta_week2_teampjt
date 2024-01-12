@@ -290,4 +290,7 @@ footer {
 
 .fixed {
   position: fixed;
+  top: 90px;
+  margin: auto;
+  left: 700px;
 }
