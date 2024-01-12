@@ -12,7 +12,7 @@
 body {
   background: url("../assets/bg.png") center/cover no-repeat;
   min-height: 100vh;
-  margin-top: 75px;
+  margin-top: 85px;
 }
 
 a {
@@ -50,23 +50,23 @@ header span {
 
 .header-box img {
   width: 100%;
-  height: auto;
+  height: 400px;
   display: block;
 }
 
 .header-box_title {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 62%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: left;
   width: 100%;
 }
 
 .header-box_title h1 {
   color: white;
   font-size: 50px;
-  font-weight: bold;
+
   margin: -250px 0 0;
 }
 
@@ -121,9 +121,58 @@ footer {
   cursor: pointer;
   background-color: var(--bg-header-color);
 }
-.header-sort > button {
-  margin-top: 15px;
+.header-sort {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
 }
+
+.btn-hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-5 {
+  background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+.btn-hover.color-6 {
+  background-image: linear-gradient(to right, #009245, #fcee21, #00a8c5, #d9e021);
+  box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+}
+
+.header-sort button {
+  margin-right: 15px;
+  text-align: center;
+}
+
 #search-input::placeholder {
   text-align: center;
 }
@@ -138,7 +187,7 @@ footer {
   justify-content: center;
   gap: 16px;
   list-style: none;
-  padding-top: 40px;
+  padding-top: 25px;
 }
 /*카드하나*/
 .movie-card {
