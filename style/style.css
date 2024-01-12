@@ -118,20 +118,55 @@ footer {
   background-color: var(--bg-header-color);
 }
 .header-sort {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
 }
-.header-sort > button {
-  margin-top: 15px;
-  border-radius: 5px;
-  padding: 5px 5px;
+
+.btn-hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
-.header-sort > button:hover {
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
-.header-sort > button:nth-child(1) {
-  /* 첫 번째 버튼에 적용할 스타일 */
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-5 {
+  background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+.btn-hover.color-6 {
+  background-image: linear-gradient(to right, #009245, #fcee21, #00a8c5, #d9e021);
+  box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+}
+
+.header-sort button {
   margin-right: 15px;
+  text-align: center;
 }
 
 #search-input::placeholder {
