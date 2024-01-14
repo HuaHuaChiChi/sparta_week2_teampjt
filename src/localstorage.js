@@ -36,10 +36,11 @@ function loadReviews() {
         const reviewItem = document.createElement("div");
         reviewItem.className = "reviewItem";
         reviewItem.innerHTML = `
-            <p>${review.name}: ${review.content}, ${review.id}</p> 
-            <button class = "deleteButton" data-review-id="${review.id}">삭제 </button>
-            <button class = "updateButton" data-review-id="${review.id}">수정 </button>
-            <input type="password" class="passwordval" placeholder="비밀번호">`;
+        <p>${review.name}</p>
+        <p>${review.content}</p> 
+        <button class = "deleteButton" data-review-id="${review.id}">삭제 </button>
+        <button class = "updateButton" data-review-id="${review.id}">수정 </button>
+        <input type="password" class="passwordval" placeholder="비밀번호">`;
         commentList.appendChild(reviewItem);
       }
     });

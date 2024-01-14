@@ -126,7 +126,7 @@ footer {
   flex-direction: row;
 }
 
-.header-menu>button {
+.header-menu > button {
   justify-content: flex-end;
   color: green;
   margin-right: 30px;
@@ -249,8 +249,6 @@ footer {
   line-height: 1.1;
 }
 
-
-
 /* detail page design */
 #details-container {
   padding-top: 75px;
@@ -294,11 +292,9 @@ footer {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-
 }
 
 /* 정렬 button style */
-
 
 .btn-hover {
   width: 200px;
@@ -313,18 +309,18 @@ footer {
   background-size: 300% 100%;
 
   border-radius: 50px;
-  -moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .btn-hover:hover {
   background-position: 100% 0;
-  -moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .btn-hover:focus {
@@ -337,7 +333,7 @@ footer {
 }
 
 .btn-hover.color-6 {
-  background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
+  background-image: linear-gradient(to right, #009245, #fcee21, #00a8c5, #d9e021);
   box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
 }
 
@@ -367,7 +363,7 @@ footer {
 }
 
 #inputForm {
-  background-color: #79BCA4;
+  background-color: #79bca4;
   /* #5dc19b , #16aa52, #D7DE84 */
   padding: 20px;
   position: relative;
@@ -411,17 +407,37 @@ footer {
   width: 100%;
   height: auto;
   margin-top: 30px;
-}
-
-#commentList p+span,
-#commentList p span+span {
-  display: block;
-  width: 100%;
-}
-
-#commentList p+span {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 25px;
 }
 
-#commentList p span+span {}
+#commentList p + p {
+  outline: 1px solid lightgray;
+  height: 100px;
+  background-color: white;
+  border-radius: 5px;
+  text-align: left;
+  margin-right: 10px;
+  border: 0;
+  font-size: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+#commentList button {
+  width: 5%;
+  height: 40px;
+  float: right;
+  margin-left: 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#commentList input {
+  height: 40px;
+  float: right;
+}
