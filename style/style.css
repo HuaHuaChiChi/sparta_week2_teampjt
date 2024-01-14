@@ -357,3 +357,71 @@ footer {
 .hidden {
   display: none;
 }
+
+/* localstorage */
+#inputForm,
+#commentList {
+  width: 65%;
+  height: 270px;
+  margin: auto;
+}
+
+#inputForm {
+  background-color: #79BCA4;
+  /* #5dc19b , #16aa52, #D7DE84 */
+  padding: 20px;
+  position: relative;
+}
+
+#inputForm input,
+#inputForm #reviewInput {
+  outline: 1px solid lightgray;
+  width: 15%;
+  height: 40px;
+  background-color: white;
+  border-radius: 5px;
+  text-align: left;
+  margin-right: 10px;
+  border: 0;
+  font-size: 15px;
+  padding-left: 15px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+#inputForm #reviewInput {
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+
+#inputForm button {
+  width: 15%;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  float: right;
+  background-color: #16aa52;
+  color: white;
+}
+
+#commentList p {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+}
+
+#commentList p+span,
+#commentList p span+span {
+  display: block;
+  width: 100%;
+}
+
+#commentList p+span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#commentList p span+span {}
