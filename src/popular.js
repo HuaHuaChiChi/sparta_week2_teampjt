@@ -78,29 +78,19 @@ async function fetchMovieData() {
 // 가져온 Popular API를 실행
 generateMovieCards();
 
-// 2. 영화 검색 스크립트
-const handleSearch = searchKeyword => {
-  const movieCards = document.querySelectorAll(".movie-card");
+// scroll 내려가면 정렬버튼 header에 붙음
+document.addEventListener("DOMContentLoaded", () => {
+  const sortButton = document.querySelector("#sortButton");
 
-  movieCards.forEach(card => {
-    const title = card.querySelector(".movie-title").textContent.toLowerCase();
-    const searchedValue = searchKeyword.replace(/\s/g, "").toLowerCase();
-    const titleWithoutSpaces = title.replace(/\s/g, "");
+  if (sortButton) {
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY || window.pageYOffset;
 
-    if (titleWithoutSpaces.includes(searchedValue)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-};
-
-// 2-1. 검색 기능 관련 스크립트
-const searchInput = document.querySelector("#search-input");
-searchInput.focus();
-
-const form = document.querySelector("#search-form");
-form.addEventListener("submit", event => {
-  event.preventDefault();
-  handleSearch(searchInput.value);
+      if (scrollY >= 418) {
+        sortButton.classList.add("fixed");
+      } else {
+        sortButton.classList.remove("fixed");
+      }
+    });
+  }
 });

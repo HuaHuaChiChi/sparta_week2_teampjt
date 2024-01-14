@@ -76,3 +76,19 @@ export async function fetchMovieData() {
   const data = await response.json();
   return data.results;
 }
+generateMovieCards();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sortButton = document.querySelector("#sortButton");
+  if (sortButton) {
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (scrollY >= 418) {
+        sortButton.classList.add("fixed");
+      } else {
+        sortButton.classList.remove("fixed");
+      }
+    });
+  }
+});
