@@ -88,3 +88,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+const topRate = document.querySelector('#toprate>a');
+const headerTitle = document.querySelector('.header-box_title');
+const originalTitle = headerTitle.innerHTML; // 기존 내용 저장
+
+topRate.addEventListener('click', function () {
+  headerTitle.innerHTML = `<h1>Top Rated Movies.</h1>`;
+});
+
+// 원래대로 복원하는 함수
+function restoreOriginalTitle() {
+  headerTitle.innerHTML = originalTitle;
+}
+
+
+document.addEventListener('click', function (event) {
+
+  if (event.target.matches('header>a')) {
+    restoreOriginalTitle();
+  }
+});
