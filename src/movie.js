@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// topRate 누르면 h1글자 바뀜
 const topRate = document.querySelector('#toprate>a');
 const headerTitle = document.querySelector('.header-box_title');
 const originalTitle = headerTitle.innerHTML; // 기존 내용 저장
