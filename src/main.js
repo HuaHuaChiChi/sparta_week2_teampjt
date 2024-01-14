@@ -17,7 +17,7 @@ if (document.querySelector("#card-list")) {
 
 // scroll 내려가면 정렬버튼 header에 붙음
 document.addEventListener('DOMContentLoaded', () => {
-  const test = document.querySelector('#sortButton');
+  const sortButton = document.querySelector('#sortButton');
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY || window.pageYOffset;
@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(scrollY);
 
     if (scrollY >= 418) {
-      test.classList.add('fixed');
+      sortButton.classList.add('fixed');
     } else {
-      test.classList.remove('fixed');
+      sortButton.classList.remove('fixed');
     }
   });
 });
