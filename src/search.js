@@ -14,3 +14,5 @@ export const handleSearch = searchKeyword => {
     }
   });
 };
+
+//switch 문으로 ux 유효성 검사 넣을 수 있을듯????
