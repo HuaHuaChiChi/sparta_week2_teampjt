@@ -12,9 +12,8 @@ export const generateMovieCards = async () => {
             <li class="movie-card" id=${movie.id}>
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                 <h3 class="movie-title">${movie.title}</h3>
-                <p>${movie.overview}</p>
-                <p>평점: ${movie.vote_average}</p>
-                <p>인기도: ${movie.popularity}</p>
+                <p class="hidden">평점: ${movie.vote_average}</p>
+                <p class="hidden">인기도: ${movie.popularity}</p>
             </li>`
         )
         .join("");
@@ -28,11 +27,11 @@ export const generateMovieCards = async () => {
       let movieId;
       if (target.matches(".movie-card")) {
         movieId = target.id;
-        alert(`영화 id: ${movieId}`);
+        // alert(`영화 id: ${movieId}`);
       } else {
         movieId = target.parentNode.id;
         // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
-        alert(`영화 id: ${movieId}`);
+        // alert(`영화 id: ${movieId}`);
       }
       if (movieId) {
         window.location.href = `detail.html?id=${movieId}`;

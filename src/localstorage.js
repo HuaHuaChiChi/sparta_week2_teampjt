@@ -11,7 +11,6 @@ function submitReview() {
   // console.log('hi');
   const reviewContent = commentForm.value.trim();
   const username = usernameElement.value.trim();
-
   if (reviewContent !== "" && username !== "" && userPassword !== "") {
     const reviewData = {
       id: new Date().getTime(),
@@ -21,7 +20,6 @@ function submitReview() {
       Password: userPassword
     };
     // console.log(reviewData);
-
     saveReview(reviewData);
     loadReviews(); // 리뷰 목록 갱신
   }
@@ -104,6 +102,7 @@ function saveReview(reviewData) {
 
 const form = document.querySelector("#inputForm");
 // console.log(form);
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   submitReview();
