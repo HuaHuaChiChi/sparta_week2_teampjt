@@ -1,11 +1,11 @@
 const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
-export const generateMovieCards = async () => {
-  let movies = await fetchMovieData(); //영화데이터 받아몸
+export const popularMovieCards = async () => {
+  let movies = await fetchMovieData2(); //영화데이터 받아몸
 
   if (cardList) {
-    function renderMovieCards() {
+    function renderMovieCards2() {
       cardList.innerHTML = movies
         .map(
           movie => `
@@ -21,7 +21,7 @@ export const generateMovieCards = async () => {
 
     // 이벤트 위임: 하위요소에서 발생한 이벤트를 상위요소에서 처리
     // 카드클릭시 상세페이지
-    function handleClickCard({ target }) {
+    function handleClickCard2({ target }) {
       // 카드 외 영역 클릭 시 무시
       if (target === cardList) return;
       let movieId;
@@ -47,21 +47,21 @@ export const generateMovieCards = async () => {
       } else if (sortBy === "sortpopular") {
         movies.sort((a, b) => b.popularity - a.popularity);
       }
-      renderMovieCards(); //정렬버튼 클릭하고 정렬한 뒤 카드 다시 렌더링
+      renderMovieCards2(); //정렬버튼 클릭하고 정렬한 뒤 카드 다시 렌더링
     }
     //카드에 클릭이벤트 넣기
-    cardList.addEventListener("click", handleClickCard);
+    cardList.addEventListener("click", handleClickCard2);
 
     //버튼에 클릭이벤트 넣기
     if (sortButtons) {
       sortButtons.addEventListener("click", handleSortButtonClick);
     }
     // 초기 함수카드 렌더링
-    renderMovieCards();
+    renderMovieCards2();
   }
 };
 
-async function fetchMovieData() {
+async function fetchMovieData2() {
   const options = {
     method: "GET",
     headers: {
@@ -75,7 +75,7 @@ async function fetchMovieData() {
   return data.results;
 }
 // 가져온 Popular API를 실행
-generateMovieCards();
+popularMovieCards();
 
 // scroll 내려가면 정렬버튼 header에 붙음
 document.addEventListener("DOMContentLoaded", () => {

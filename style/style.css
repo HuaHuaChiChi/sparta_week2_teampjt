@@ -63,7 +63,8 @@ header span {
   width: 100%;
 }
 
-#toprate a {
+#toprate>a,
+#popular>a {
   height: 100%;
 }
 

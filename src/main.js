@@ -2,6 +2,7 @@ import { generateMovieCards } from "./movie.js";
 import { handleSearch } from "./search.js";
 
 generateMovieCards();
+
 const searchInput = document.querySelector("#search-input");
 searchInput.focus();
 
