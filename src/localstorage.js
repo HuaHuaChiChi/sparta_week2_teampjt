@@ -11,6 +11,7 @@ function submitReview() {
   // console.log('hi');
   const reviewContent = commentForm.value.trim();
   const username = usernameElement.value.trim();
+
   if (reviewContent !== "" && username !== "" && userPassword !== "") {
     const reviewData = {
       id: new Date().getTime(),
@@ -77,12 +78,18 @@ function updateReview(reviewId) {
   console.log(reviewToUpdate);
 
   if (reviewToUpdate) {
-    // 수정할 내용을 받아온다.
-    const updatedContent = prompt("수정할 내용을 입력하세요:", reviewToUpdate.content); //local storage의 value
-    if (updatedContent !== null) {
-      reviewToUpdate.content = updatedContent;
-      localStorage.setItem("reviews", JSON.stringify(existingReviews));
-      loadReviews();
+    const passwordInput = document.querySelector(".passwordval");
+    console.log(passwordInput.value);
+    if (passwordInput.value === reviewToUpdate["Password"]) {
+      // 수정할 내용을 받아온다.
+      const updatedContent = prompt("수정할 내용을 입력하세요:", reviewToUpdate.content); //local storage의 value
+      if (updatedContent !== null) {
+        reviewToUpdate.content = updatedContent;
+        localStorage.setItem("reviews", JSON.stringify(existingReviews));
+        loadReviews();
+      }
+    } else {
+      alert("비밀번호 불일치");
     }
   }
 }
