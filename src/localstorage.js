@@ -37,6 +37,7 @@ function loadReviews() {
 
     if (existingReviews.length > 0) {
         existingReviews.forEach(review => {
+            if (review.movieId === movieId) {
             const reviewItem = document.createElement('div');
             reviewItem.className = 'reviewItem';
             reviewItem.innerHTML = `
@@ -45,7 +46,7 @@ function loadReviews() {
             <button class = "updateButton" data-review-id="${review.id}">수정 </button>
             <input type="password" class="passwordval" placeholder="비밀번호">`;
             commentList.appendChild(reviewItem);
-        });
+        }}); 
         //삭제버튼 이벤트 리스너 추가 삭제버튼에 data- 값을 주고 this.dataset.reviewid 삭제버튼을 누르면
         //삭제버튼의 데이터 값 ${review.id}를 가져옴 
         const deleteButtons = document.querySelectorAll('.deleteButton');
@@ -74,21 +75,16 @@ function updateReview(reviewId) {
     const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
     
     // 특정 id의 리뷰 찾기
-    const reviewToUpdate = existingReviews.find(review => review.id === reviewId);
+    const reviewToUpdate = existingReviews.find(review => review.id === reviewId); //파인드로 리뷰에 부여된 아이디값과
+    //리뷰에 저장된 데이터 아이디값 (시간) 이 같은 객체를 가져옴
     console.log(reviewToUpdate);
 
     if (reviewToUpdate) {
         // 수정할 내용을 받아온다.
-        const updatedContent = prompt('수정할 내용을 입력하세요:', reviewToUpdate.content);
-
-        if (updatedContent !== null) {  // 수정을 취소한 경우는 무시
-            // 리뷰 내용 업데이트
+        const updatedContent = prompt('수정할 내용을 입력하세요:', reviewToUpdate.content); //local storage의 value
+        if (updatedContent !== null) { 
             reviewToUpdate.content = updatedContent;
-
-            // 업데이트된 리뷰 정보를 다시 저장
             localStorage.setItem('reviews', JSON.stringify(existingReviews));
-
-            // 리뷰 목록 갱신
             loadReviews();
         }
     }
