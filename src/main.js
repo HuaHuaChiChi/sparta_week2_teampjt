@@ -12,16 +12,18 @@ form.addEventListener("submit", event => {
 if (document.querySelector("#card-list")) {
   generateMovieCards();
 }
-// ('header')
+
+
+
+// scroll 내려가면 정렬버튼 header에 붙음
 document.addEventListener('DOMContentLoaded', () => {
-  const test = document.querySelector('#test');
+  const test = document.querySelector('#sortButton');
 
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY || window.pageYOffset; // Handle cross-browser compatibility
+    const scrollY = window.scrollY || window.pageYOffset;
 
-    console.log(scrollY);
+    // console.log(scrollY);
 
-    // Adjust the scroll condition as needed
     if (scrollY >= 418) {
       test.classList.add('fixed');
     } else {
