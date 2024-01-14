@@ -3,20 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FlickFinder - Movie Search web - detail page</title>
+    <title>FlickFinder - Movie Search web</title>
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
-    <link rel="stylesheet" href="./style/detail.css" />
-    <script type="module" src="./src/detail.js"></script>
+    <script type="module" src="./src/movie.js"></script>
     <script type="module" src="./src/main.js"></script>
-    <script type="module" src="./src/localstorage.js"></script>
   </head>
   <body>
     <header>
       <a href="index.html">
-        <h1 class="apptitle">
-          Flick
-          <span>Finder</span>
+        <h1>
+          Flick<span>Finder</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -40,25 +37,21 @@
         <button id="search-btn">검색</button>
       </form>
       <div class="header-menu">
-        <button id="toprate">
-          <a href="./index.html">TOP RATED</a>
-        </button>
-        <button id="popular">
-          <a href="./popular.html">POPULAR</a>
-        </button>
+        <button id="toprate"><a href="./toprate.html">TOP RATED</a></button>
+        <button id="popular"><a href="./popular.html">POPULAR</a></button>
       </div>
     </header>
-
-    <div id="details-container"></div>
-
-    <form id="inputForm">
-      <input type="text" id="username" placeholder="닉네임" />
-      <input type="password" id="password" placeholder="비밀번호" />
-      <textarea type="text" id="reviewInput" placeholder="리뷰를 작성하세요"></textarea>
-      <button>저장</button>
-    </form>
-    <div id="commentList"></div>
+    <div class="header-box">
+      <img src="/img/movie-theater.jpg" />
+      <div class="header-box_title">
+        <h1>Top Rated Movies.</h1>
+      </div>
+    </div>
+    <div class="header-sort" id="sortButton">
+      <button id="sorttoprate" class="btn-hover color-5">평점 순</button>
+      <button id="sortpopular" class="btn-hover color-6">인기도 순</button>
+    </div>
+    <ul id="card-list"></ul>
   </body>
   <footer>FlickFinder - Movie Search WEB</footer>
-  >>>>>>> origin/joon
 </html>
