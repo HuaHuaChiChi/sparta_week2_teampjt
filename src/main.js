@@ -1,7 +1,5 @@
-import { generateMovieCards } from "./movie.js";
-import { handleSearch } from "./search.js";
 
-generateMovieCards();
+import { handleSearch } from "./search.js";
 
 const searchInput = document.querySelector("#search-input");
 searchInput.focus();
