@@ -76,19 +76,20 @@ async function fetchMovieData() {
   return data.results;
 }
 
+generateMovieCards();
+
 // scroll 내려가면 정렬버튼 header에 붙음
-document.addEventListener('DOMContentLoaded', () => {
-  const sortButton = document.querySelector('#sortButton');
+document.addEventListener("DOMContentLoaded", () => {
+  const sortButton = document.querySelector("#sortButton");
   if (sortButton) {
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       const scrollY = window.scrollY || window.pageYOffset;
 
       if (scrollY >= 418) {
-        sortButton.classList.add('fixed');
+        sortButton.classList.add("fixed");
       } else {
-        sortButton.classList.remove('fixed');
+        sortButton.classList.remove("fixed");
       }
     });
   }
 });
-
