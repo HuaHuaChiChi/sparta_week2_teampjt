@@ -84,12 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sortButton) {
     window.addEventListener("scroll", () => {
       const scrollY = window.scrollY || window.pageYOffset;
-
-      if (scrollY >= 418) {
-        sortButton.classList.add("fixed");
-      } else {
-        sortButton.classList.remove("fixed");
-      }
+      scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
     });
   }
 });
