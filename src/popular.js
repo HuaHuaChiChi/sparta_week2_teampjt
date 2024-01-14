@@ -125,15 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const sortButton = document.querySelector('#sortButton');
 
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY || window.pageYOffset;
+  if (sortButton) {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || window.pageYOffset;
 
-    // console.log(scrollY);
-
-    if (scrollY >= 418) {
-      sortButton.classList.add('fixed');
-    } else {
-      sortButton.classList.remove('fixed');
-    }
-  });
+      if (scrollY >= 418) {
+        sortButton.classList.add('fixed');
+      } else {
+        sortButton.classList.remove('fixed');
+      }
+    });
+  }
 });

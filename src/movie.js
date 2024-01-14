@@ -76,3 +76,19 @@ async function fetchMovieData() {
   return data.results;
 }
 
+// scroll 내려가면 정렬버튼 header에 붙음
+document.addEventListener('DOMContentLoaded', () => {
+  const sortButton = document.querySelector('#sortButton');
+  if (sortButton) {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (scrollY >= 418) {
+        sortButton.classList.add('fixed');
+      } else {
+        sortButton.classList.remove('fixed');
+      }
+    });
+  }
+});
+
