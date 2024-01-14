@@ -341,15 +341,13 @@ footer {
   margin-right: 15px;
   text-align: center;
 }
-
 .fixed {
   position: fixed;
   top: 90px;
-  margin: auto;
-  left: 700px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9;
 }
-
 .hidden {
   display: none;
 }
