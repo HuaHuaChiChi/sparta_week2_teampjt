@@ -3,7 +3,15 @@ const usernameElement = document.getElementById("username");
 const commentList = document.getElementById("commentList");
 const userPassword = document.getElementById("password");
 
-function submitReview(reviewMovieId) {
+const movieId = getMovieIdFromURL();
+function getMovieIdFromURL() {
+  const url = window.location.href;
+  const urlParts = url.split("?");
+  const movieId = urlParts[urlParts.length - 1];
+  return movieId;
+}
+
+function submitReview(movieId) {
   const reviewContent = commentForm.value.trim();
   const username = usernameElement.value.trim();
 
@@ -12,15 +20,15 @@ function submitReview(reviewMovieId) {
       id: new Date().getTime(),
       name: username,
       content: reviewContent,
-      movieId: reviewMovieId
+      movieId: movieId
     };
 
     saveReview(reviewData);
-    loadReviews(reviewMovieId); // 리뷰 목록 갱신
+    loadReviews(movieId); // 리뷰 목록 갱신
   }
 }
 
-function loadReviews(reviewMovieId) {
+function loadReviews(movieId) {
   commentList.innerHTML = ""; // 기존 댓글 목록 비우기
 
   const existingReviews = JSON.parse(localStorage.getItem("reviews")) || [];
