@@ -358,7 +358,15 @@ footer {
   display: none;
 }
 
-/* localstorage */
+/* localStorage */
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 50px 0;
+}
+
 #inputForm,
 #commentList {
   width: 65%;
@@ -407,21 +415,42 @@ footer {
   color: white;
 }
 
+
 #commentList p {
   width: 100%;
   height: auto;
   margin-top: 30px;
-}
-
-#commentList p+span,
-#commentList p span+span {
-  display: block;
-  width: 100%;
-}
-
-#commentList p+span {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 25px;
 }
 
-#commentList p span+span {}
+#commentList p+p {
+  outline: 1px solid lightgray;
+  height: 100px;
+  background-color: white;
+  border-radius: 5px;
+  text-align: left;
+  margin-right: 10px;
+  border: 0;
+  font-size: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+#commentList button {
+  width: 5%;
+  height: 40px;
+  float: right;
+  margin-left: 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#commentList input {
+  height: 40px;
+  float: right;
+}

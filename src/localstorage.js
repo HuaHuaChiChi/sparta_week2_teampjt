@@ -41,7 +41,8 @@ function loadReviews() {
                 const reviewItem = document.createElement('div');
                 reviewItem.className = 'reviewItem';
                 reviewItem.innerHTML = `
-            <p><span>${review.name} </span> <span>${review.content}</span></p> 
+            <p>${review.name}</p>
+            <p>${review.content}</p> 
             <button class = "deleteButton" data-review-id="${review.id}">삭제 </button>
             <button class = "updateButton" data-review-id="${review.id}">수정 </button>
             <input type="password" class="passwordval" placeholder="비밀번호">`;
