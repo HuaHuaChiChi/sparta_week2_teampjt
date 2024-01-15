@@ -10,6 +10,8 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background: url("../assets/bg.png") center/cover no-repeat;
   min-height: 100vh;
   margin-top: 85px;
@@ -363,15 +365,34 @@ footer {
 }
 
 /* localstorage */
-#inputForm,
-#commentList {
+.reviewCountText {
+  font-weight: bold;
+  font-size: 20px;
+}
+#inputForm {
   width: 65%;
   height: 270px;
   margin: auto;
 }
+#commentList {
+  width: 65%;
+  height: 500px;
+  margin-top: 10px;
+  margin: auto;
+  overflow-y: auto;
+  padding-top: 10px;
+}
+.noreview {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
 
 #inputForm {
-  background-color: #79bca4;
+  background-color: #f9f9f9;
+  outline: 1px solid lightgray;
   /* #5dc19b , #16aa52, #D7DE84 */
   padding: 20px;
   position: relative;
@@ -379,7 +400,7 @@ footer {
 }
 
 #inputForm input,
-#inputForm #reviewInput {
+#reviewInput {
   outline: 1px solid lightgray;
   width: 15%;
   height: 40px;
@@ -408,47 +429,60 @@ footer {
   cursor: pointer;
   border: none;
   float: right;
-  background-color: #16aa52;
+  background-color: #79bca4;
   color: white;
 }
+#inputForm button:hover {
+  background-color: #d9534f;
+}
+.reviewItem {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
 
-#commentList p {
-  width: 100%;
-  height: auto;
-  margin-top: 30px;
+.username {
   font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
   font-size: 25px;
 }
 
-#commentList p + p {
+.comment-content {
+  display: flex;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 15px;
   outline: 1px solid lightgray;
   height: 100px;
-  background-color: white;
-  border-radius: 5px;
-  text-align: left;
-  margin-right: 10px;
-  border: 0;
-  font-size: 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  margin-bottom: 30px;
+  background-color: f9f9f9;
+  font-size: 20px;
 }
 
-#commentList button {
-  width: 5%;
-  height: 40px;
-  float: right;
-  margin-left: 20px;
-  font-size: 18px;
+.passwordval {
+  border: 1px solid lightgray;
   border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.deleteButton,
+.updateButton {
+  background-color: #79bca4;
+  border-radius: 5px;
+  color: #fff;
   border: none;
+  padding: 5px 10px;
   cursor: pointer;
-  margin-bottom: 20px;
 }
 
-#commentList input {
-  height: 40px;
-  float: right;
+.deleteButton:hover,
+.updateButton:hover {
+  background-color: #d9534f;
 }
 
 /*index.html*/

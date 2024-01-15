@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
         isThrottled = false;
         // console.log("Event processed");
-      }, 300);
+      }, 100);
     };
 
     window.addEventListener("scroll", throttleScroll);
