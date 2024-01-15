@@ -1,4 +1,5 @@
 import { generateMovieCards } from './movie.js';
+import { handleSearch } from "./searchFunction.js";
 
 const nowPlayingAuthorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q";
 const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1";
@@ -16,3 +17,14 @@ let nowPlayBtn = document.querySelector('#nowPlaying > a');
 topRateBtn.addEventListener('click', () => generateMovieCards(topRateAuthorization, topRateUrl));
 popularBtn.addEventListener('click', () => generateMovieCards(popularAuthorization, popularUrl));
 nowPlayBtn.addEventListener('click', () => generateMovieCards(nowPlayingAuthorization, nowPlayingUrl));
+
+const searchInput = document.querySelector("#search-input");
+searchInput.focus();
+
+
+const form = document.querySelector("#search-form");
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  handleSearch(searchInput.value);
+});
+
