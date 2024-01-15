@@ -2,7 +2,7 @@ const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
 export const generateMovieCards = async () => {
-  let movies = await fetchMovieData(); //영화데이터 받아몸
+  let movies = await fetchMovieData();
 
   if (cardList) {
     function renderMovieCards() {
