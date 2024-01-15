@@ -1,8 +1,8 @@
 const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
-export const generateMovieCards = async (Authorization, url) => {
-  let movies = await fetchMovieData(Authorization, url);
+export const generateMovieCards = async () => {
+  let movies = await fetchMovieData(); //영화데이터 받아몸
 
   if (cardList) {
     function renderMovieCards() {
@@ -27,11 +27,11 @@ export const generateMovieCards = async (Authorization, url) => {
       let movieId;
       if (target.matches(".movie-card")) {
         movieId = target.id;
-        // alert(`영화 id: ${movieId}`);
+        alert(`영화 id: ${movieId}`);
       } else {
         movieId = target.parentNode.id;
         // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
-        // alert(`영화 id: ${movieId}`);
+        alert(`영화 id: ${movieId}`);
       }
       if (movieId) {
         window.location.href = `detail.html?id=${movieId}`;
@@ -61,28 +61,42 @@ export const generateMovieCards = async (Authorization, url) => {
   }
 };
 
-async function fetchMovieData(Authorization, url) {
+async function fetchMovieData() {
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: Authorization,
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
     }
   };
-  const response = await fetch(url, options);
+  const response = await fetch("https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1", options);
   const data = await response.json();
   return data.results;
 }
-
-
+// 가져온 Popular API를 실행
+generateMovieCards();
 
 document.addEventListener("DOMContentLoaded", () => {
   const sortButton = document.querySelector("#sortButton");
-  if (sortButton) {
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY || window.pageYOffset;
 
-      scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
-    });
+  if (sortButton) {
+    let isThrottled = false;
+
+    const throttleScroll = () => {
+      if (isThrottled) {
+        // console.log("Event throttled"); 
+      return;}
+
+      isThrottled = true;
+      setTimeout(() => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
+        isThrottled = false;
+        // console.log("Event processed");
+      }, 100);
+    };
+
+    window.addEventListener("scroll", throttleScroll);
   }
 });
