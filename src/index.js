@@ -12,8 +12,8 @@ export const generateMovieCards = async () => {
             <li class="movie-card" id=${movie.id}>
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                 <h3 class="movie-title">${movie.title}</h3>
-                <p>평점: ${movie.vote_average}</p>
-                <p>인기도: ${movie.popularity}</p>
+                <p class="hidden">평점: ${movie.vote_average}</p>
+                <p class="hidden">인기도: ${movie.popularity}</p>
             </li>`
         )
         .join("");
