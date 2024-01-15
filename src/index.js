@@ -2,7 +2,7 @@ const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
 export const generateMovieCards = async () => {
-  let movies = await fetchMovieData();
+  let movies = await fetchMovieData(); //영화데이터 받아몸
 
   if (cardList) {
     function renderMovieCards() {
@@ -27,11 +27,11 @@ export const generateMovieCards = async () => {
       let movieId;
       if (target.matches(".movie-card")) {
         movieId = target.id;
-        // alert(`영화 id: ${movieId}`);
+        alert(`영화 id: ${movieId}`);
       } else {
         movieId = target.parentNode.id;
         // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
-        // alert(`영화 id: ${movieId}`);
+        alert(`영화 id: ${movieId}`);
       }
       if (movieId) {
         window.location.href = `detail.html?id=${movieId}`;
@@ -61,15 +61,16 @@ export const generateMovieCards = async () => {
   }
 };
 
-async function fetchMovieData(test, url) {
+async function fetchMovieData() {
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: test,
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
     }
   };
-  const response = await fetch(url, options);
+  const response = await fetch("https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1", options);
   const data = await response.json();
   return data.results;
 }
