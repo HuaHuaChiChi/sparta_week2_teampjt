@@ -1,8 +1,8 @@
 const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
-export const popularMovieCards = async () => {
-  let movies = await fetchMovieData2();
+export const generateMovieCards = async () => {
+  let movies = await fetchMovieData(); //영화데이터 받아몸
 
   if (cardList) {
     function renderMovieCards() {
@@ -61,7 +61,7 @@ export const popularMovieCards = async () => {
   }
 };
 
-async function fetchMovieData2() {
+async function fetchMovieData() {
   const options = {
     method: "GET",
     headers: {
@@ -75,7 +75,7 @@ async function fetchMovieData2() {
   return data.results;
 }
 // 가져온 Popular API를 실행
-popularMovieCards();
+generateMovieCards();
 
 // scroll 내려가면 정렬버튼 header에 붙음
 document.addEventListener("DOMContentLoaded", () => {
@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const throttleScroll = () => {
       if (isThrottled) {
         // console.log("Event throttled"); 
-      return;}
+        return;
+      }
 
       isThrottled = true;
       setTimeout(() => {

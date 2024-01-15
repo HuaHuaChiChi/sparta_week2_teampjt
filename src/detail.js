@@ -1,87 +1,105 @@
-// detail.js
-//영화 상세 정보 가져옴
-async function fetchMovieDetails(movieId) {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
+// 1. 영화 데이터를 가져와서 화면에 나타내기
+const sortButtons = document.querySelector(".header-sort");
+const cardList = document.querySelector("#card-list");
+
+export const generateMovieCards = async () => {
+  let movies = await fetchMovieData();
+
+  if (cardList) {
+    function renderMovieCards() {
+      cardList.innerHTML = movies
+        .map(
+          movie => `
+            <li class="movie-card" id=${movie.id}>
+                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                <h3 class="movie-title">${movie.title}</h3>
+                <p class="hidden">평점: ${movie.vote_average}</p>
+                <p class="hidden">인기도: ${movie.popularity}</p>
+            </li>`
+        )
+        .join("");
     }
-  };
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KO`, options);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch movie details. Status: ${response.status}`);
+
+    // 이벤트 위임: 하위요소에서 발생한 이벤트를 상위요소에서 처리
+    // 카드클릭시 상세페이지
+    function handleClickCard({ target }) {
+      // 카드 외 영역 클릭 시 무시
+      if (target === cardList) return;
+      let movieId;
+      if (target.matches(".movie-card")) {
+        movieId = target.id;
+        // alert(`영화 id: ${movieId}`);
+      } else {
+        movieId = target.parentNode.id;
+        // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
+        // alert(`영화 id: ${movieId}`);
+      }
+      if (movieId) {
+        window.location.href = `detail.html?id=${movieId}`;
+      }
+    }
+    // 정렬버튼 누르면 정렬되게하기 toprate: vote_average순 popular: popularity순
+    function handleSortButtonClick({ target }) {
+      const sortBy = target.id;
+
+      if (sortBy === "sorttoprate") {
+        // 정렬 기준을 변경하고 화면을 다시 렌더링
+        movies.sort((a, b) => b.vote_average - a.vote_average);
+      } else if (sortBy === "sortpopular") {
+        movies.sort((a, b) => b.popularity - a.popularity);
+      }
+      renderMovieCards(); //정렬버튼 클릭하고 정렬한 뒤 카드 다시 렌더링
+    }
+    //카드에 클릭이벤트 넣기
+    cardList.addEventListener("click", handleClickCard);
+
+    //버튼에 클릭이벤트 넣기
+    if (sortButtons) {
+      sortButtons.addEventListener("click", handleSortButtonClick);
+    }
+    // 초기 함수카드 렌더링
+    renderMovieCards();
   }
-  const data = await response.json();
-  console.log("Fetched movie details:", data);
-  return data;
-}
+};
 
-//영화 credits 가져옴
-async function fetchMovieCredits(movieId) {
+async function fetchMovieData() {
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmM2ZTFkNjQzMTNkMDY1ZjczYjkyYjliNTM4YmJjNSIsInN1YiI6IjY1OTNkMDkyZmMzMWQzNzI4NTQ2YjQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CkZC7SdOdnrzr2YHFLyd94sIAFIYTAK2sOqJHujnVCY"
     }
   };
-
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KO`, options);
+  const response = await fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1&include_adult=false", options);
   const data = await response.json();
-  console.log("Fetched movie Cast:", data);
-  return data;
+  return data.results;
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  // URL에서 'id'라는 query parameter의 값을 가져옵니다.
-  const urlParams = new URLSearchParams(window.location.search);
-  const movieId = urlParams.get("id");
-  console.log(movieId);
-  if (movieId) {
-    try {
-      // 영화 상세 정보를 가져옵니다. detail과 credit정보를 한번에 함께 가져오려고 promise.all썻다.. 뭐라는지모르겟다..
-      const [movieDetails, movieCredits] = await Promise.all([fetchMovieDetails(movieId), fetchMovieCredits(movieId)]);
-      // 가져온 상세 정보를 표시합니다.
-      displayDetail(movieDetails, movieCredits);
-    } catch (error) {
-      console.error("Error fetching movie details:", error);
-    }
+generateMovieCards();
+
+// scroll 내려가면 정렬버튼 header에 붙음
+document.addEventListener("DOMContentLoaded", () => {
+  const sortButton = document.querySelector("#sortButton");
+
+  if (sortButton) {
+    let isThrottled = false;
+
+    const throttleScroll = () => {
+      if (isThrottled) {
+        // console.log("Event throttled"); 
+        return;
+      }
+
+      isThrottled = true;
+      setTimeout(() => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
+        isThrottled = false;
+        // console.log("Event processed");
+      }, 100);
+    };
+
+    window.addEventListener("scroll", throttleScroll);
   }
 });
-
-const displayDetail = async (movieDetails, movieCredits) => {
-  const containerDetail = document.querySelector("#details-container");
-  let movieDetail = await createMovieDetail(movieDetails, movieCredits);
-  containerDetail.innerHTML = movieDetail;
-};
-
-const createMovieDetail = (detail, credits) => {
-  const genres = detail.genres.map(genres => genres.name).join(",");
-  const director = credits.crew.find(person => person.job === "Director").name;
-  const majorCast = credits.cast
-    .slice(0, 5)
-    .map(person => person.name)
-    .join(",");
-  let detail_html = `
-  <div class="movie-detail-container">
-    <img src="https://image.tmdb.org/t/p/w500/${detail.poster_path}" alt="영화 이미지" class="movie-img"/>
-    <div class="movie-info">
-      <h2 class="movie-title">${detail.original_title}</h2>
-      <div class="movie-ratings">
-        <h4 class="movie-rate">⭐ ${detail.vote_average}</h4>
-        <span class="movie-vote">(${detail.vote_count}명)</span>
-      </div>
-      <div class="movie-detail">
-        <span class="movie-date">개봉연도: ${detail.release_date}</span>
-        <h3 class="movie-genres">장르: ${genres}</h3>
-        <h3 class="movie-director">감독: ${director ? director : "N/A"}</h3>
-        <h3 class="movie-cast">등장인물: ${majorCast}</h3>
-      </div>
-      <p class="movie-desc">${detail.overview}</p>
-    </div>
-  </div>`;
-  return detail_html;
-};

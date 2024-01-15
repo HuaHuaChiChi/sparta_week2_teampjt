@@ -86,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const throttleScroll = () => {
       if (isThrottled) {
         // console.log("Event throttled"); 
-      return;}
+        return;
+      }
 
       isThrottled = true;
       setTimeout(() => {
