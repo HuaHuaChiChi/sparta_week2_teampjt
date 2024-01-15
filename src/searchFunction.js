@@ -22,13 +22,3 @@ export const handleSearch = searchKeyword => {
     alert("일치하는 제목이 없습니다!");
   }
 };
-
-
-const searchInput = document.querySelector("#search-input");
-searchInput.focus();
-
-const form = document.querySelector("#search-form");
-form.addEventListener("submit", event => {
-  event.preventDefault();
-  handleSearch(searchInput.value);
-});
