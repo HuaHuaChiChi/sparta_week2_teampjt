@@ -27,11 +27,11 @@ export const generateMovieCards = async () => {
       let movieId;
       if (target.matches(".movie-card")) {
         movieId = target.id;
-        // alert(`영화 id: ${movieId}`);
+        alert(`영화 id: ${movieId}`);
       } else {
         movieId = target.parentNode.id;
         // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
-        // alert(`영화 id: ${movieId}`);
+        alert(`영화 id: ${movieId}`);
       }
       if (movieId) {
         window.location.href = `detail.html?id=${movieId}`;
@@ -67,37 +67,23 @@ async function fetchMovieData() {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmM2ZTFkNjQzMTNkMDY1ZjczYjkyYjliNTM4YmJjNSIsInN1YiI6IjY1OTNkMDkyZmMzMWQzNzI4NTQ2YjQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CkZC7SdOdnrzr2YHFLyd94sIAFIYTAK2sOqJHujnVCY"
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjRkY2E3YzRhYjRjOGY3Zjc5NjA0ZWRkNTQwMjE2NiIsInN1YiI6IjY1OTNiNzljZWJiOTlkNWUxN2EwMTRlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BzYyp6rUTuS2MYX8KCIEgGrkns1anoyP2yhoqvkXv-Q"
     }
   };
-  const response = await fetch("https://api.themoviedb.org/3/movie/popular?language=ko-KR&include_adult=false", options);
+  const response = await fetch("https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1", options);
   const data = await response.json();
   return data.results;
 }
 // 가져온 Popular API를 실행
 generateMovieCards();
 
-// scroll 내려가면 정렬버튼 header에 붙음
 document.addEventListener("DOMContentLoaded", () => {
   const sortButton = document.querySelector("#sortButton");
-
   if (sortButton) {
-    let isThrottled = false;
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY || window.pageYOffset;
 
-    const throttleScroll = () => {
-      if (isThrottled) {
-        // console.log("Event throttled"); 
-      return;}
-
-      isThrottled = true;
-      setTimeout(() => {
-        const scrollY = window.scrollY || window.pageYOffset;
-        scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
-        isThrottled = false;
-        // console.log("Event processed");
-      }, 100);
-    };
-
-    window.addEventListener("scroll", throttleScroll);
+      scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
+    });
   }
 });
