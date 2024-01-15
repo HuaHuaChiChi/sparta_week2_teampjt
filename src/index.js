@@ -27,11 +27,11 @@ export const generateMovieCards = async () => {
       let movieId;
       if (target.matches(".movie-card")) {
         movieId = target.id;
-        alert(`영화 id: ${movieId}`);
+        // alert(`영화 id: ${movieId}`);
       } else {
         movieId = target.parentNode.id;
         // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
-        alert(`영화 id: ${movieId}`);
+        // alert(`영화 id: ${movieId}`);
       }
       if (movieId) {
         window.location.href = `detail.html?id=${movieId}`;
