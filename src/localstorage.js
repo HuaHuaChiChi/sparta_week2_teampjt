@@ -52,7 +52,7 @@ function loadReviews() {
           deleteReview(reviewId);
           loadReviews();
         } else {
-          alert("비번 다름");
+          alert("비번 번호를 확인해주세요");
         }
       });
     });
@@ -66,7 +66,7 @@ function loadReviews() {
           updateReview(reviewId);
           loadReviews();
         } else {
-          alert("비번 다름");
+          alert("비번 번호를 확인해주세요");
         }
       });
     });

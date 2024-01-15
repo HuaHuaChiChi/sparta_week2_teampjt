@@ -1,4 +1,3 @@
-
 import { handleSearch } from "./search.js";
 
 const searchInput = document.querySelector("#search-input");

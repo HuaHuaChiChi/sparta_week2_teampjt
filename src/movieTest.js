@@ -1,8 +1,10 @@
 const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
+const popularAuthorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmM2ZTFkNjQzMTNkMDY1ZjczYjkyYjliNTM4YmJjNSIsInN1YiI6IjY1OTNkMDkyZmMzMWQzNzI4NTQ2YjQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CkZC7SdOdnrzr2YHFLyd94sIAFIYTAK2sOqJHujnVCY';
+const popularUrl = "https://api.themoviedb.org/3/movie/popular?language=ko-KR&include_adult=false";
 
-export const generateMovieCards = async () => {
-  let movies = await fetchMovieData();
+export const popularMovieCards = async (test, url) => {
+  let movies = await fetchMovieData(test, url);
 
   if (cardList) {
     function renderMovieCards() {
@@ -74,10 +76,12 @@ async function fetchMovieData(test, url) {
   return data.results;
 }
 // 가져온 Popular API를 실행
-generateMovieCards();
+popularMovieCards();
 
+// scroll 내려가면 정렬버튼 header에 붙음
 document.addEventListener("DOMContentLoaded", () => {
   const sortButton = document.querySelector("#sortButton");
+
   if (sortButton) {
     window.addEventListener("scroll", () => {
       const scrollY = window.scrollY || window.pageYOffset;
