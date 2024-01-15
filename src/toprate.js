@@ -1,10 +1,8 @@
 const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
-const popularAuthorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmM2ZTFkNjQzMTNkMDY1ZjczYjkyYjliNTM4YmJjNSIsInN1YiI6IjY1OTNkMDkyZmMzMWQzNzI4NTQ2YjQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CkZC7SdOdnrzr2YHFLyd94sIAFIYTAK2sOqJHujnVCY';
-const popularUrl = "https://api.themoviedb.org/3/movie/popular?language=ko-KR&include_adult=false";
 
-export const popularMovieCards = async (test, url) => {
-  let movies = await fetchMovieData(test, url);
+export const generateMovieCards = async (Authorization, url) => {
+  let movies = await fetchMovieData(Authorization, url);
 
   if (cardList) {
     function renderMovieCards() {
@@ -14,7 +12,6 @@ export const popularMovieCards = async (test, url) => {
             <li class="movie-card" id=${movie.id}>
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                 <h3 class="movie-title">${movie.title}</h3>
-
                 <p class="hidden">평점: ${movie.vote_average}</p>
                 <p class="hidden">인기도: ${movie.popularity}</p>
             </li>`
@@ -64,12 +61,12 @@ export const popularMovieCards = async (test, url) => {
   }
 };
 
-async function fetchMovieData(test, url) {
+async function fetchMovieData(Authorization, url) {
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: test,
+      Authorization: Authorization,
     }
   };
   const response = await fetch(url, options);
@@ -77,17 +74,29 @@ async function fetchMovieData(test, url) {
   return data.results;
 }
 // 가져온 Popular API를 실행
-popularMovieCards();
 
-// scroll 내려가면 정렬버튼 header에 붙음
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const sortButton = document.querySelector("#sortButton");
 
   if (sortButton) {
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY || window.pageYOffset;
+    let isThrottled = false;
 
-      scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
-    });
+    const throttleScroll = () => {
+      if (isThrottled) {
+        // console.log("Event throttled"); 
+      return;}
+
+      isThrottled = true;
+      setTimeout(() => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
+        isThrottled = false;
+        // console.log("Event processed");
+      }, 300);
+    };
+
+    window.addEventListener("scroll", throttleScroll);
   }
 });

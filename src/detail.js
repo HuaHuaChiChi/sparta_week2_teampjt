@@ -106,6 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const key in endpoints) {
     const button = document.querySelector(`#${key} > a`);
     button.addEventListener('click', () => generateMovieCards(endpoints[key].authorization, endpoints[key].url));
-    button.href = "../index.html";
+    button.href = "../nowplaying.html";
   }
 })
