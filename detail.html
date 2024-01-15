@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="stylesheet" href="./style/detail.css" />
     <script type="module" src="./src/detail.js"></script>
-    <script type="module" src="./src/search.js"></script>
+    <script type="module" src="./src/searchEvent.js"></script>
     <script type="module" src="./src/localstorage.js"></script>
   </head>
   <body>
@@ -46,7 +46,7 @@
         <button id="popular">
           <a href="./popular.html">POPULAR</a>
         </button>
-        <button id="nowPlaying"><a href="./index.html">NOW PLAYING</a></button>
+        <button id="nowPlaying"><a href="./nowPlaying.html">NOW PLAYING</a></button>
       </div>
     </header>
 
@@ -54,7 +54,7 @@
 
     <form id="inputForm">
       <input type="text" id="username" placeholder="닉네임" />
-      <input type="password" id="password" placeholder="비밀번호" />
+      <input type="password" id="password" placeholder="비밀번호" required />
       <textarea type="text" id="reviewInput" placeholder="리뷰를 작성하세요"></textarea>
       <button>저장</button>
     </form>
