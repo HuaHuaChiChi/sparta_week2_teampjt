@@ -35,3 +35,4 @@ form.addEventListener("submit", event => {
   handleSearch(searchInput.value);
 });
 
+const a = document.querySelector();
