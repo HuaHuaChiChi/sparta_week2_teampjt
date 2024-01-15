@@ -82,10 +82,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const sortButton = document.querySelector("#sortButton");
 
   if (sortButton) {
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY || window.pageYOffset;
+    let isThrottled = false;
 
-      scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
-    });
+    const throttleScroll = () => {
+      if (isThrottled) {
+        // console.log("Event throttled"); 
+      return;}
+
+      isThrottled = true;
+      setTimeout(() => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
+        isThrottled = false;
+        // console.log("Event processed");
+      }, 300);
+    };
+
+    window.addEventListener("scroll", throttleScroll);
   }
 });
