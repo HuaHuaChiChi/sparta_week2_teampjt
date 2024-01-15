@@ -5,6 +5,8 @@ const userPasswordElement = document.getElementById("password");
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get("id");
 console.log(movieId);
+
+
 function submitReview() {
   const reviewContent = commentForm.value.trim();
   const username = usernameElement.value.trim();
@@ -52,7 +54,7 @@ function loadReviews() {
           deleteReview(reviewId);
           loadReviews();
         } else {
-          alert("비번 다름");
+          alert("비번번호를 확인해주세요");
         }
       });
     });
@@ -66,7 +68,7 @@ function loadReviews() {
           updateReview(reviewId);
           loadReviews();
         } else {
-          alert("비번 다름");
+          alert("비번번호를 확인해주세요");
         }
       });
     });
