@@ -2,7 +2,7 @@ const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
 export const generateMovieCards = async () => {
-  let movies = await fetchMovieData(); //영화데이터 받아몸
+  let movies = await fetchMovieData();
 
   if (cardList) {
     function renderMovieCards() {
@@ -12,8 +12,9 @@ export const generateMovieCards = async () => {
             <li class="movie-card" id=${movie.id}>
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                 <h3 class="movie-title">${movie.title}</h3>
-                <p>평점: ${movie.vote_average}</p>
-                <p>인기도: ${movie.popularity}</p>
+
+                <p class="hidden">평점: ${movie.vote_average}</p>
+                <p class="hidden">인기도: ${movie.popularity}</p>
             </li>`
         )
         .join("");
@@ -27,11 +28,11 @@ export const generateMovieCards = async () => {
       let movieId;
       if (target.matches(".movie-card")) {
         movieId = target.id;
-        alert(`영화 id: ${movieId}`);
+        // alert(`영화 id: ${movieId}`);
       } else {
         movieId = target.parentNode.id;
         // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
-        alert(`영화 id: ${movieId}`);
+        // alert(`영화 id: ${movieId}`);
       }
       if (movieId) {
         window.location.href = `detail.html?id=${movieId}`;
@@ -77,29 +78,13 @@ async function fetchMovieData() {
 // 가져온 Popular API를 실행
 generateMovieCards();
 
-// 2. 영화 검색 스크립트
-const handleSearch = searchKeyword => {
-  const movieCards = document.querySelectorAll(".movie-card");
+document.addEventListener("DOMContentLoaded", () => {
+  const sortButton = document.querySelector("#sortButton");
+  if (sortButton) {
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY || window.pageYOffset;
 
-  movieCards.forEach(card => {
-    const title = card.querySelector(".movie-title").textContent.toLowerCase();
-    const searchedValue = searchKeyword.replace(/\s/g, "").toLowerCase();
-    const titleWithoutSpaces = title.replace(/\s/g, "");
-
-    if (titleWithoutSpaces.includes(searchedValue)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-};
-
-// 2-1. 검색 기능 관련 스크립트
-const searchInput = document.querySelector("#search-input");
-searchInput.focus();
-
-const form = document.querySelector("#search-form");
-form.addEventListener("submit", event => {
-  event.preventDefault();
-  handleSearch(searchInput.value);
+      scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
+    });
+  }
 });

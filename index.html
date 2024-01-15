@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FlickFinder - Movie Search web</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
     <script type="module" src="./src/main.js"></script>
+    <script src="/src/index.js" type="module"></script>
   </head>
   <body>
     <header>
-      <a href="index.html">
+      <a href="./index.html">
         <h1>
           Flick<span>Finder</span>
           <svg
@@ -45,9 +46,9 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-search"
-            style="transform: translate(40px, 1px)" 
-          > 
-          <!-- 여기 부분 검색인풋 돋보기 정렬 style="transform: translate(40px, 1px)" -->
+            style="transform: translate(40px, 1px)"
+          >
+            <!-- 여기 부분 검색인풋 돋보기 정렬 style="transform: translate(40px, 1px)" -->
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.3-4.3" />
           </svg>
@@ -56,14 +57,15 @@
         <button id="search-btn">검색</button>
       </form>
       <div class="header-menu">
-        <button id="toprate">TOP RATED</button>
+        <button id="toprate"><a href="./toprate.html">TOP RATED</a></button>
         <button id="popular"><a href="./popular.html">POPULAR</a></button>
+        <button id="nowPlaying"><a href="./index.html">NOW PLAYING</a></button>
       </div>
     </header>
     <div class="header-box">
       <img src="/img/movie-theater.jpg" />
       <div class="header-box_title">
-        <h1>Search the list of top rated & popular movies!</h1>
+        <h1>Now Playing Movies.</h1>
       </div>
     </div>
     <div class="header-sort" id="sortButton">

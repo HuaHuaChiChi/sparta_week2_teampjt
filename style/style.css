@@ -37,10 +37,15 @@ header h1 {
   font-size: 30px;
   font-weight: bold;
   margin-left: 30px;
+  white-space: nowrap;
 }
 
 header span {
-  color: green;
+  color: green; 
+}
+
+body > header > a > h1 > svg {
+  margin-left: 5px;
 }
 
 .header-menu span {
@@ -61,6 +66,11 @@ header span {
   transform: translate(-50%, -50%);
   text-align: left;
   width: 100%;
+}
+
+#toprate>a,
+#popular>a {
+  height: 100%;
 }
 
 @keyframes fadeInDown {
@@ -249,8 +259,6 @@ footer {
   line-height: 1.1;
 }
 
-
-
 /* detail page design */
 #details-container {
   padding-top: 75px;
@@ -294,11 +302,9 @@ footer {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-
 }
 
 /* 정렬 button style */
-
 
 .btn-hover {
   width: 200px;
@@ -313,18 +319,18 @@ footer {
   background-size: 300% 100%;
 
   border-radius: 50px;
-  -moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .btn-hover:hover {
   background-position: 100% 0;
-  -moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .btn-hover:focus {
@@ -337,7 +343,7 @@ footer {
 }
 
 .btn-hover.color-6 {
-  background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
+  background-image: linear-gradient(to right, #009245, #fcee21, #00a8c5, #d9e021);
   box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
 }
 
@@ -349,8 +355,8 @@ footer {
 .fixed {
   position: fixed;
   top: 90px;
-  margin: auto;
-  left: 700px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9;
 }
 
@@ -375,7 +381,7 @@ h2 {
 }
 
 #inputForm {
-  background-color: #79BCA4;
+  background-color: #79bca4;
   /* #5dc19b , #16aa52, #D7DE84 */
   padding: 20px;
   position: relative;

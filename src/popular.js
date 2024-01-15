@@ -1,8 +1,8 @@
 const sortButtons = document.querySelector(".header-sort");
 const cardList = document.querySelector("#card-list");
 
-export const generateMovieCards = async () => {
-  let movies = await fetchMovieData(); //영화데이터 받아몸
+export const popularMovieCards = async () => {
+  let movies = await fetchMovieData2(); //영화데이터 받아몸
 
   if (cardList) {
     function renderMovieCards() {
@@ -61,8 +61,7 @@ export const generateMovieCards = async () => {
   }
 };
 
-
-async function fetchMovieData() {
+async function fetchMovieData2() {
   const options = {
     method: "GET",
     headers: {
@@ -76,64 +75,17 @@ async function fetchMovieData() {
   return data.results;
 }
 // 가져온 Popular API를 실행
-generateMovieCards();
-
-// 2. 영화 검색 스크립트
-const handleSearch = searchKeyword => {
-  const movieCards = document.querySelectorAll(".movie-card");
-
-  movieCards.forEach(card => {
-    const title = card.querySelector(".movie-title").textContent.toLowerCase();
-    const searchedValue = searchKeyword.replace(/\s/g, "").toLowerCase();
-    const titleWithoutSpaces = title.replace(/\s/g, "");
-
-    if (titleWithoutSpaces.includes(searchedValue)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-};
-
-// 2-1. 검색 기능 관련 스크립트
-const searchInput = document.querySelector("#search-input");
-searchInput.focus();
-
-const form = document.querySelector("#search-form");
-form.addEventListener("submit", event => {
-  event.preventDefault();
-  handleSearch(searchInput.value);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const test = document.querySelector('#test');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-
-    // console.log(scrollY);
-
-    if (scrollY >= 418) {
-      test.classList.add('fixed');
-    } else {
-      test.classList.remove('fixed');
-    }
-  });
-});
+popularMovieCards();
 
 // scroll 내려가면 정렬버튼 header에 붙음
-document.addEventListener('DOMContentLoaded', () => {
-  const sortButton = document.querySelector('#sortButton');
+document.addEventListener("DOMContentLoaded", () => {
+  const sortButton = document.querySelector("#sortButton");
 
   if (sortButton) {
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       const scrollY = window.scrollY || window.pageYOffset;
 
-      if (scrollY >= 418) {
-        sortButton.classList.add('fixed');
-      } else {
-        sortButton.classList.remove('fixed');
-      }
+      scrollY >= 418 ? sortButton.classList.add("fixed") : sortButton.classList.remove("fixed");
     });
   }
 });
