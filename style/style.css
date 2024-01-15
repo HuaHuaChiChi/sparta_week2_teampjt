@@ -297,6 +297,11 @@ footer {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  line-height: 20px;
+}
+
+.movie-desc {
+  line-height: 20px;
 }
 
 /* 정렬 button style */
@@ -370,6 +375,7 @@ footer {
   /* #5dc19b , #16aa52, #D7DE84 */
   padding: 20px;
   position: relative;
+  border-radius: 8px;
 }
 
 #inputForm input,

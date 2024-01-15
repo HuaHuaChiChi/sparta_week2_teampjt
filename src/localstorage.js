@@ -2,6 +2,7 @@ const commentForm = document.getElementById("reviewInput");
 const usernameElement = document.getElementById("username");
 const commentList = document.getElementById("commentList");
 const userPasswordElement = document.getElementById("password");
+
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get("id");
 console.log(movieId);
