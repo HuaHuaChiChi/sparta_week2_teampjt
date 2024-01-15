@@ -1,4 +1,4 @@
-import { handleSearch } from "./searchFunction.js";
+import { handleSearch } from "./search.js";
 
 const searchInput = document.querySelector("#search-input");
 searchInput.focus();

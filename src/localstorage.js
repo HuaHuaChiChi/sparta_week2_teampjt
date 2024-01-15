@@ -1,3 +1,5 @@
+const reviewCountText = document.getElementById("commentCount");
+const detailContainer = document.getElementById("details-container");
 const commentForm = document.getElementById("reviewInput");
 const usernameElement = document.getElementById("username");
 const commentList = document.getElementById("commentList");
@@ -24,6 +26,10 @@ function submitReview() {
   }
 }
 function loadReviews() {
+  //폼 제출시 폼 비우기
+  commentForm.value = "";
+  usernameElement.value = "";
+  userPasswordElement.value = "";
   commentList.innerHTML = ""; // 기존 댓글 목록 비우기
   const existingReviews = JSON.parse(localStorage.getItem("reviews")) || [];
   const idFilterReviews = existingReviews.filter(review => review.movieId === movieId);
@@ -33,14 +39,19 @@ function loadReviews() {
         const reviewItem = document.createElement("div");
         reviewItem.className = "reviewItem";
         reviewItem.innerHTML = `
-        <p>${review.name}</p>
-        <p>${review.content}</p>
+        <p class="username">${review.name}</p>
+        <input type="password" class="passwordval" data-review-id="${review.id}" placeholder="비밀번호">
         <button class = "deleteButton" data-review-id="${review.id}">삭제 </button>
         <button class = "updateButton" data-review-id="${review.id}">수정 </button>
-        <input type="password" class="passwordval" data-review-id="${review.id}" placeholder="비밀번호">`;
+        <p class="comment-content">${review.content}</p>`;
+
         commentList.appendChild(reviewItem);
       }
     });
+    const reviewCountText = document.createElement("p");
+    reviewCountText.className = "reviewCountText";
+    reviewCountText.textContent = `REVIEW ${idFilterReviews.length}개`;
+    commentList.insertBefore(reviewCountText, commentList.firstChild);
     //삭제버튼 이벤트 리스너 추가 삭제버튼에 data- 값을 주고 this.dataset.reviewid 삭제버튼을 누르면
     //삭제버튼의 데이터 값 ${review.id}를 가져옴
     const deleteButtons = document.querySelectorAll(".deleteButton");
@@ -52,6 +63,8 @@ function loadReviews() {
         if (inputPassword && inputPassword.value.trim() === review.Password) {
           deleteReview(reviewId);
           loadReviews();
+        } else if (inputPassword.value.trim() === "") {
+          alert("비밀번호를 입력해주세요!");
         } else {
           alert("비번번호를 확인해주세요");
         }
@@ -74,7 +87,7 @@ function loadReviews() {
       });
     });
   } else {
-    commentList.innerHTML = "<p>아직 리뷰가 없습니다.</p>";
+    commentList.innerHTML = `<p class="noreview">아직 리뷰가 없습니다.</p>`;
   }
 }
 function updateReview(reviewId) {
