@@ -73,7 +73,6 @@ async function fetchMovieData(Authorization, url) {
   const data = await response.json();
   return data.results;
 }
-// 가져온 Popular API를 실행
 
 
 
