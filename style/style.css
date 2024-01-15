@@ -37,10 +37,15 @@ header h1 {
   font-size: 30px;
   font-weight: bold;
   margin-left: 30px;
+  white-space: nowrap;
 }
 
 header span {
-  color: green;
+  color: green; 
+}
+
+body > header > a > h1 > svg {
+  margin-left: 5px;
 }
 
 .header-menu span {
